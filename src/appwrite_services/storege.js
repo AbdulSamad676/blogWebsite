@@ -5,6 +5,8 @@ export class Service {
   client = new Client();
   databases;
   bucket;
+
+  //   constructor
   constructor() {
     this.client
       .setEndpoint(envConfig.projectUrl)
@@ -13,6 +15,7 @@ export class Service {
     this.bucket = new Storage(this.client);
   }
 
+  //   create Post
   async craeatePost({ title, slug, content, featuredImage, status, userID }) {
     try {
       return await this.databases.createDocument(
@@ -32,6 +35,7 @@ export class Service {
     }
   }
 
+  //   Update Post
   async updatePost(slug, { title, content, featuredImage, status }) {
     try {
       return await this.databases.updateDocument(
@@ -50,6 +54,7 @@ export class Service {
     }
   }
 
+  //   delete post
   async deletePost({ slug }) {
     try {
       await this.databases.deleteDocument(
@@ -64,6 +69,7 @@ export class Service {
     }
   }
 
+  //   Get single post
   async getPost(slug) {
     try {
       return await this.databases.getDocument(
@@ -75,6 +81,7 @@ export class Service {
       console.log("Error in getPost", error);
     }
   }
+
   //   Get all posts
   async getAllPosts(queries = [Query.equal("status", "active")]) {
     try {
@@ -89,7 +96,6 @@ export class Service {
   }
 
   //   upload file
-
   async uploadFile(file) {
     try {
       await this.bucket.createFile(
@@ -101,7 +107,7 @@ export class Service {
       console.log("Error in the file uploading", error);
     }
   }
-
+  // Delete File
   async deleteFile(fileId) {
     try {
       await this.bucket.deleteFile(envConfig.appwriteBucketId, fileId);
@@ -111,7 +117,6 @@ export class Service {
   }
 
   //   get file preview
-
   getFilePreview(fileId) {
     return this.bucket.getFilePreview(envConfig.appwriteBucketId, fileId);
   }
