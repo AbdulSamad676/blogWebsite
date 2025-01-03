@@ -6,4 +6,17 @@ import LogoutBtn from "./Header/LogoutBtn";
 import Button from "./Button";
 import Input from "./Input";
 import RTE from "./RTE";
-export { Header, Footer, Container, Logo, LogoutBtn, Button, Input, RTE };
+import Signup from "../components/Signup";
+import Login from "../components/Login";
+export {
+  Header,
+  Footer,
+  Container,
+  Logo,
+  LogoutBtn,
+  Button,
+  Input,
+  RTE,
+  Signup,
+  Login,
+};
